@@ -19,7 +19,8 @@
 // $input = readline("Ievadi savu vardu: ");
 // echo "Tavs vards ir $input\n";
 $taskList = [
-    "first task", "second task"
+    "first task",
+    "second task",
 ];
 
 function viewAllTasks($allTasks) {
@@ -28,12 +29,19 @@ function viewAllTasks($allTasks) {
     }
 }
 
-function addTask() {
-    echo "to be implemnted";
+function addTask(&$allTasks) {
+    $task = readline("Ievadiet uzdevumu: ");
+    array_push($allTasks, $task);
 }
 
-function viewTask() {
-
+function viewTask($allTasks) {
+    $index = readline("Ievadiet uzdevuma indeksu: ");
+    if ($index >= 0 && $index < count($allTasks)) {
+        echo $allTasks[$index] . "\n";
+    } else {
+        echo "Invalid number.";
+        return;
+    }
 }
 
 do {
@@ -48,10 +56,10 @@ do {
             viewAllTasks($taskList);
             break;
         case '2':
-            addTask();    
+            addTask($taskList);    
             break;
         case '3': 
-            viewTask();
+            viewTask($taskList);
             break;
         default:
             echo "Invalid option!\n";
